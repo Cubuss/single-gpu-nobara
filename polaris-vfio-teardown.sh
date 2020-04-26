@@ -22,18 +22,3 @@ modprobe amdgpu
 
 # Restart Display Manager
 systemctl start sddm.service
-#systemctl start x11vnc.service
-
-#echo -n 0000:01:00.0 > /sys/bus/pci/drivers/vfio-pci/unbind || echo "Failed to unbind gpu from vfio-pci"
-#echo -n 0000:01:00.1 > /sys/bus/pci/drivers/vfio-pci/unbind || echo "Failed to unbind gpu-audio from vfio-pci"
-
-#echo -n 1002 67df > /sys/bus/pci/drivers/vfio-pci/remove_id
-#echo -n 1002 aaf0 > /sys/bus/pci/drivers/vfio-pci/remove_id
-
-#modprobe -r vfio-pci
-
-#echo -n 0000:01:00.0 > /sys/bus/pci/drivers/amdgpu/bind || echo "Failed to bind amdgpu"
-#echo -n 0000:01:00.1 > /sys/bus/pci/drivers/snd_hda_intel/bind || echo "Failed to bind amd hdmi audio"
-
-#systemctl isolate graphical.target
-#systemctl suspend
