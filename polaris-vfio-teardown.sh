@@ -12,10 +12,9 @@ virsh nodedev-reattach pci_0000_01_00_0
 
 # Rebind VT consoles
 echo 1 > /sys/class/vtconsole/vtcon0/bind
-#echo 1 > /sys/class/vtconsole/vtcon1/bind
 
 # Re-Bind EFI-Framebuffer
-#echo "efi-framebuffer.0" > /sys/bus/platform/drivers/efi-framebuffer/bind
+echo "efi-framebuffer.0" > /sys/bus/platform/drivers/efi-framebuffer/bind
 
 #Load amd driver
 modprobe amdgpu
