@@ -49,12 +49,12 @@ if test -e "/sys/class/vtconsole/vtcon1/bind" ; then
 fi
 
 #Unbind EFI-Framebuffer if currently bound
-# if test -e "/sys/bus/platform/drivers/efi-framebuffer/unbind" ; then
-#     echo efi-framebuffer.0 > /sys/bus/platform/drivers/efi-framebuffer/unbind
-#     sleep "${medium_delay}"
-# else
-#     echo "Could not find framebuffer to unload!"
-# fi
+if test -e "/sys/bus/platform/drivers/efi-framebuffer/unbind" ; then
+    echo efi-framebuffer.0 > /sys/bus/platform/drivers/efi-framebuffer/unbind
+    sleep "${medium_delay}"
+else
+    echo "Could not find framebuffer to unload!"
+fi
 
 # Unload loaded GPU drivers
 if test -e "/tmp/vfio-loaded-gpu-modules" ; then
