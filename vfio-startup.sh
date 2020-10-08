@@ -37,37 +37,41 @@ stop_display_manager_if_running gdm.service
 stop_display_manager_if_running lightdm.service
 stop_display_manager_if_running lxdm.service
 stop_display_manager_if_running xdm.service
+stop_display_manager_if_running mdm.service
+stop_display_manager_if_running display-manager.service
+
 
 # Unbind VTconsoles if currently bound
 if test -e "/sys/class/vtconsole/vtcon0/bind" ; then
     echo 0 > /sys/class/vtconsole/vtcon0/bind
-    sleep "${long_delay}"
 fi
 if test -e "/sys/class/vtconsole/vtcon1/bind" ; then
     echo 0 > /sys/class/vtconsole/vtcon1/bind
-    sleep "${long_delay}"
 fi
 
 #Unbind EFI-Framebuffer if currently bound
 if test -e "/sys/bus/platform/drivers/efi-framebuffer/unbind" ; then
     echo efi-framebuffer.0 > /sys/bus/platform/drivers/efi-framebuffer/unbind
-    sleep "${medium_delay}"
 else
     echo "Could not find framebuffer to unload!"
 fi
+
+sleep "${long_delay}"
 
 # Unload loaded GPU drivers
 if test -e "/tmp/vfio-loaded-gpu-modules" ; then
     rm -f /tmp/vfio-loaded-gpu-modules
 fi
 
+unload_module_if_loaded amdgpu-pro
 unload_module_if_loaded amdgpu
 unload_module_if_loaded nvidia_drm
 unload_module_if_loaded nvidia_modeset
 unload_module_if_loaded nvidia_uvm
 unload_module_if_loaded nvidia
 unload_module_if_loaded ipmi_devintf
-
+unload_module_if_loaded nouveau
+unload_module_if_loaded i915
 
 # Unbind the GPU from display driver
 virsh nodedev-detach pci_0000_01_00_0

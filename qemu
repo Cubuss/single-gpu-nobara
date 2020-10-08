@@ -1,12 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 
 # Script for win10
 if [[ $1 == "win10" ]]; then
    if [[ $2 == "prepare" ]]; then
-	/bin/polaris-vfio-startup.sh
+        /bin/vfio-startup.sh 2>&1 | tee -a /var/log/libvirt/custom_hooks.log
    fi
 
    if [[ $2 == "release" ]]; then
-	/bin/polaris-vfio-teardown.sh
+        /bin/vfio-teardown.sh 2>&1 | tee -a /var/log/libvirt/custom_hooks.log
    fi
 fi
+
