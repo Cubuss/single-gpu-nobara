@@ -9,5 +9,5 @@ cp vfio-teardown.sh /bin/vfio-teardown.sh
 cp qemu /etc/libvirt/hooks/qemu
 
 chmod +x /bin/vfio-startup.sh
-chmod +x /bin/vfio-teardonw/sh
+chmod +x /bin/vfio-teardown.sh
 chmod +x /etc/libvirt/hooks/qemu
