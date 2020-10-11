@@ -90,3 +90,5 @@ echo "options vfio-pci disable_vga=1" >> /etc/modprobe.d/vfio.conf
 
 echo 'add_drivers+=" vfio vfio_iommu_type1 vfio_pci "' > /etc/dracut.conf.d/vfio.conf
 dracut -f
+
+./install-hooks.sh
