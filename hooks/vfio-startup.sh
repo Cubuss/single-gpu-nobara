@@ -66,7 +66,7 @@ if test -e "/tmp/vfio-is-nvidia" ; then
     rm -f /tmp/vfio-is-nvidia
 fi
 
-if lsmod | grep "nvidia" &> /dev/null || lsmod | grep "nouveau" &> /dev/null ; then
+if lsmod | grep "nvidia" &> /dev/null ; then
     echo "true" >> /tmp/vfio-is-nvidia
     echo efi-framebuffer.0 > /sys/bus/platform/drivers/efi-framebuffer/unbind
 fi
