@@ -16,9 +16,18 @@ int main(){
 		printf("ERROR 12: \n NO DEDICATED GPU DRIVER DETECTED. \n EXITING...\n IF THIS IS AN ERROR, PLEASE FILE A BUG REPORT. \n");
 		exit(12);
 	}
-
 	bool grub = file_exists("/etc/default/grub");
 	bool systemdboot = file_exists("/usr/bin/kernelstub");
 
+	bool intel = is_intel();
+	bool amd = is_amd();
+	
+	if (grub) {
+		
+	}
+
+	if (systemdboot){
+		
+	}
 }
 

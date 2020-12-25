@@ -38,3 +38,47 @@ bool efifb_disabled(){
 	pclose(cmdline);
 	return false;
 }
+
+void add_grub_param(char param[]){
+	// Code to add a grub_parameter
+	
+}
+
+void add_systemdboot_param(char param[]){
+	char command[100];
+	strcat(command, "sudo kernelstub --add-options \"");
+	strcat(command, param);
+	strcat(command,"\"");
+	system(command);
+}
+
+bool is_amd(){
+	char vendor_id[]="AuthenticAMD";
+	FILE * lscpu;
+	char singleLine[150];
+	lscpu = popen("lscpu", "r");
+	while (!feof(lscpu)){
+		fgets(singleLine, 150, lscpu);
+		if (strstr(singleLine, vendor_id) != NULL){
+				return true;
+			}
+	}
+	pclose(lscpu);
+	return false;
+}
+
+
+bool is_intel(){
+	char vendor_id[]="GenuineIntel";
+	FILE * lscpu;
+	char singleLine[150];
+	lscpu = popen("lscpu", "r");
+	while (!feof(lscpu)){
+		fgets(singleLine, 150, lscpu);
+		if (strstr(singleLine, vendor_id) != NULL){
+				return true;
+			}
+	}
+	pclose(lscpu);
+	return false;
+}
