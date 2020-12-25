@@ -4,5 +4,6 @@
 #define LINUXAPILAYER_H
 
 bool is_module_in_use(char[]);
+bool file_exists(char[]);
 
 #endif

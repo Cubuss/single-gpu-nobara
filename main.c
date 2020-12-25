@@ -1,21 +1,24 @@
-#include "linuxapilayer.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include "linuxapilayer.h"
+
+/* ERROR CODE      MEANING
+ *     12       NO DEDICATED GPU DETECTED.
+ * */
 
 int main(){
-	if (is_module_in_use("amdgpu")){
-		printf("amdgpu is in use \n");
+	bool amdgpu = is_module_in_use("amdgpu");
+	bool nvidia = is_module_in_use("nvidia");
+	bool noveau = is_module_in_use("noveau");
+	bool amdgpu_pro = is_module_in_use("amdgpu-pro");
+
+	if (!amdgpu && !nvidia && !noveau && !amdgpu_pro){
+		printf("ERROR 12: \n NO DEDICATED GPU DRIVER DETECTED. \n EXITING...\n IF THIS IS AN ERROR, PLEASE FILE A BUG REPORT. \n");
+		exit(12);
 	}
 
-	if (!is_module_in_use("nvidia")){
-		printf("nvidia is not in use \n");
-	}
+	bool grub = file_exists("/etc/default/grub");
+	bool systemdboot = file_exists("/usr/bin/kernelstub");
 
-	if (!is_module_in_use("noveau")){
-		printf("noveau is not in use \n");
-	}
-
-	if (is_module_in_use("drm")){
-		printf("drm is in use \n");
-	}
-	return 0;
 }
+

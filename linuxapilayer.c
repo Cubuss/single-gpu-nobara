@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h> 
 #include <string.h>
+#include <unistd.h>
 
 bool is_module_in_use(char module[]){
 	FILE * lsmod;
@@ -14,5 +15,12 @@ bool is_module_in_use(char module[]){
 			}
 	}
 	pclose(lsmod);
-return false;
+	return false;
+}
+
+bool file_exists(char path[]){
+	if (access(path, F_OK) == 0){
+		return true;
+	}
+	return false;
 }
