@@ -10,5 +10,7 @@ bool is_amd();
 bool is_intel();
 
 void add_systemdboot_param(char[]);
+void add_grub_param(char[]);
+void update_bootloaders();
 
 #endif

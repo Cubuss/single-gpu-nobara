@@ -41,7 +41,7 @@ bool efifb_disabled(){
 
 void add_grub_param(char param[]){
 	// Code to add a grub_parameter
-	
+	printf("GRUB support is currently in development and is not ready for use. \n");
 }
 
 void add_systemdboot_param(char param[]){
@@ -81,4 +81,8 @@ bool is_intel(){
 	}
 	pclose(lscpu);
 	return false;
+}
+
+void update_bootloaders(){
+
 }

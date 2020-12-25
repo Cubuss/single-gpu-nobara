@@ -23,11 +23,39 @@ int main(){
 	bool amd = is_amd();
 	
 	if (grub) {
-		
+		if (amd){
+			add_grub_param("amd_iommu=on");
+		}
+		if (intel){
+			add_grub_param("intel_iommu=on");
+		}
+		add_grub_param("iommu=pt");
+		add_grub_param("kvm.ignore_msrs=1");
+		add_grub_param("vfio_pci.disable_idle_d3=1");
+		add_grub_param("pci=noaer");
+
+		if ((amdgpu)||(noveau)||(amdgpu_pro)){
+			add_grub_param("video=efifb:off");
+		}
 	}
 
 	if (systemdboot){
-		
-	}
+		if (amd){
+			add_systemdboot_param("amd_iommu=on");
+		}
+		if (intel){
+			add_systemdboot_param("intel_iommu=on");
+		}
+		add_systemdboot_param("iommu=pt");
+		add_systemdboot_param("kvm.ignore_msrs=1");
+		add_systemdboot_param("vfio_pci.disable_idle_d3=1");
+		add_systemdboot_param("pci=noaer");
+
+		if ((amdgpu)||(noveau)||(amdgpu_pro)){
+			add_systemdboot_param("video=efifb:off");
+		}
+	}	
+	update_bootloaders();
+	return 0;
 }
 
