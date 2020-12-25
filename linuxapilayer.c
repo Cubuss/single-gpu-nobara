@@ -24,3 +24,17 @@ bool file_exists(char path[]){
 	}
 	return false;
 }
+
+bool efifb_disabled(){
+	FILE * cmdline;
+	char singleLine[5000];
+	cmdline = popen("cat /proc/cmdline", "r");
+	while (!feof(cmdline)){
+		fgets(singleLine, 5000, cmdline);
+		if (strstr(singleLine, "video=efifb:off") != NULL){
+				return true;
+			}
+	}
+	pclose(cmdline);
+	return false;
+}
