@@ -41,6 +41,21 @@ bool efifb_disabled(){
 
 void add_grub_param(char param[]){
 	// Code to add a grub_parameter
+	FILE * grub_config = fopen("grub-sample","r");
+	FILE * grub_temp = fopen("grub-temp","w");
+
+	char singleLine [5000];
+	while (!feof(grub_config)){
+		fgets(singleLine, 5000, grub_config);
+		if (strstr(singleLine, "GRUB_CMDLINE_LINUX_DEFAULT=") != NULL){
+
+		}
+		else
+			{
+			// code to write this line to grub_temp
+		}
+	}
+	
 	printf("GRUB support is currently in development and is not ready for use. \n");
 }
 
@@ -84,5 +99,19 @@ bool is_intel(){
 }
 
 void update_bootloaders(){
-
+	if (file_exists("/usr/bin/bootclt")){
+		system("sudo bootctl update");
+	}
+	if (file_exists("/usr/bin/update-grub")){
+		system("sudo update-grub");
+	}	
+	if (file_exists("/usr/bin/grub-update")){
+		system("sudo grub-update");
+	}
+	if (file_exists("/usr/bin/grub-mkconfig")){
+		system("sudo grub-mkconfig -o /boot/grub/grub.cfg");
+	}
+	if (file_exists("/usr/bin/grub2-mkconfig")){
+		system("sudo grub2-mkconfig -o \"$(readlink -e /etc/grub2.conf)\"");
+	}
 }

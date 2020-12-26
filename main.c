@@ -7,6 +7,7 @@
  * */
 
 int main(){
+	/*
 	bool amdgpu = is_module_in_use("amdgpu");
 	bool nvidia = is_module_in_use("nvidia");
 	bool noveau = is_module_in_use("noveau");
@@ -55,7 +56,8 @@ int main(){
 			add_systemdboot_param("video=efifb:off");
 		}
 	}	
-	update_bootloaders();
+	update_bootloaders(); */
+	add_grub_param("test");
 	return 0;
 }
 
