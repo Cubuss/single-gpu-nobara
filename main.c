@@ -7,7 +7,6 @@
  * */
 
 int main(){
-	/*
 	bool amdgpu = is_module_in_use("amdgpu");
 	bool nvidia = is_module_in_use("nvidia");
 	bool noveau = is_module_in_use("noveau");
@@ -52,12 +51,11 @@ int main(){
 		add_systemdboot_param("vfio_pci.disable_idle_d3=1");
 		add_systemdboot_param("pci=noaer");
 
-		if ((amdgpu)||(noveau)||(amdgpu_pro)){
+	 if ((amdgpu)||(noveau)||(amdgpu_pro)){
 			add_systemdboot_param("video=efifb:off");
 		}
 	}	
-	update_bootloaders(); */
-	add_grub_param("test");
+	update_bootloaders();
 	return 0;
 }
 

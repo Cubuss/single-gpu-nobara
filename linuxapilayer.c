@@ -41,22 +41,49 @@ bool efifb_disabled(){
 
 void add_grub_param(char param[]){
 	// Code to add a grub_parameter
-	FILE * grub_config = fopen("grub-sample","r");
+	FILE * grub_config = fopen("/etc/default/grub","r");
 	FILE * grub_temp = fopen("grub-temp","w");
 
 	char singleLine [5000];
 	while (!feof(grub_config)){
 		fgets(singleLine, 5000, grub_config);
 		if (strstr(singleLine, "GRUB_CMDLINE_LINUX_DEFAULT=") != NULL){
+			if (!strstr(singleLine, param)){
+				// I can use a boolean that gets trigerred in the first occurance of "
+				// In the second appearance of " , we can replace it with the text
+				char ending[10]="";
+				char newLine[6000];
+				char text[350]=" ";
+				strcat(text, param);
+				char textToAdd[400];
+				strcpy(textToAdd, text);
+				strcat(textToAdd, ending);
 
+				int counter = 0;
+				bool first_occurence = false;
+				while ((singleLine[counter] != '\"') || (!first_occurence)){
+					newLine[counter] = singleLine[counter];
+					if (singleLine[counter] == '\"'){
+						first_occurence = true;
+					}
+					counter ++;
+				}
+
+				strcat(newLine, textToAdd);
+				fputs(newLine, grub_temp);
+			} else {
+				fputs(singleLine, grub_temp);
+			}
 		}
 		else
 			{
-			// code to write this line to grub_temp
+				fputs(singleLine, grub_temp);
 		}
 	}
-	
-	printf("GRUB support is currently in development and is not ready for use. \n");
+	fclose(grub_config);
+	fclose(grub_temp);
+	system("sudo mv grub-temp /etc/default/grub");
+	printf("GRUB config file successfully generated. \n");
 }
 
 void add_systemdboot_param(char param[]){
@@ -98,20 +125,38 @@ bool is_intel(){
 	return false;
 }
 
+bool command_exists(char command[]){
+	char command1[350]="/usr/bin/";
+	char command2[350]="/usr/local/sbin/";
+	char command3[350]="/usr/local/bin/";
+	char command4[350]="/usr/lib/jvm/default/bin/";
+
+	strcat(command1, command);
+	strcat(command2, command);
+	strcat(command3, command);
+	strcat(command4, command);
+	if((file_exists(command1)) ||
+	   (file_exists(command2)) ||
+	   (file_exists(command3)) ||
+	   (file_exists(command4))) {return true;}
+	return false;
+}
+
+
 void update_bootloaders(){
-	if (file_exists("/usr/bin/bootclt")){
+	if (command_exists("bootclt")){
 		system("sudo bootctl update");
 	}
-	if (file_exists("/usr/bin/update-grub")){
+	if (command_exists("update-grub")){
 		system("sudo update-grub");
-	}	
-	if (file_exists("/usr/bin/grub-update")){
+	}
+	if (command_exists("grub-update")){
 		system("sudo grub-update");
 	}
-	if (file_exists("/usr/bin/grub-mkconfig")){
+	if (command_exists("grub-mkconfig")){
 		system("sudo grub-mkconfig -o /boot/grub/grub.cfg");
 	}
-	if (file_exists("/usr/bin/grub2-mkconfig")){
+	if (command_exists("grub2-mkconfig")){
 		system("sudo grub2-mkconfig -o \"$(readlink -e /etc/grub2.conf)\"");
 	}
 }

@@ -8,6 +8,7 @@ bool file_exists(char[]);
 bool efifb_disabled();
 bool is_amd();
 bool is_intel();
+bool command_exists(char []);
 
 void add_systemdboot_param(char[]);
 void add_grub_param(char[]);
