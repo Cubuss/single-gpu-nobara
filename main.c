@@ -1,12 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <zconf.h>
 #include "linuxapilayer.h"
 
 /* ERROR CODE      MEANING
  *     12       NO DEDICATED GPU DETECTED.
+ *     42       NEEDS ROOT
  * */
 
 int main(){
+	if(geteuid() != 0)
+	{
+		printf("ERROR 42 \n Please run this script as root! \n");
+		exit(42);
+	} else {
+		printf("\n Root access obtained! \n");
+	}
 	bool amdgpu = is_module_in_use("amdgpu");
 	bool nvidia = is_module_in_use("nvidia");
 	bool noveau = is_module_in_use("noveau");
