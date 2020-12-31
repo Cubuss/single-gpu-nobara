@@ -39,52 +39,58 @@ bool efifb_disabled(){
 	return false;
 }
 
-void add_grub_param(char param[]){
-	// Code to add a grub_parameter
-	FILE * grub_config = fopen("/etc/default/grub","r");
-	FILE * grub_temp = fopen("grub-temp","w");
+void add_grub_param(char param[100]){
+    // Code to add a grub_parameter
+    FILE * grub_config = fopen("/etc/default/grub","r");
+    FILE * grub_temp = fopen("grub-temp","w");
 
-	char singleLine [5000];
-	while (!feof(grub_config)){
-		fgets(singleLine, 5000, grub_config);
-		if (strstr(singleLine, "GRUB_CMDLINE_LINUX_DEFAULT=") != NULL){
-			if (!strstr(singleLine, param)){
-				// I can use a boolean that gets trigerred in the first occurance of "
-				// In the second appearance of " , we can replace it with the text
-				char ending[10]="";
-				char newLine[6000];
-				char text[350]=" ";
-				strcat(text, param);
-				char textToAdd[400];
-				strcpy(textToAdd, text);
-				strcat(textToAdd, ending);
-
-				int counter = 0;
-				bool first_occurence = false;
-				while ((singleLine[counter] != '\"') || (!first_occurence)){
-					newLine[counter] = singleLine[counter];
-					if (singleLine[counter] == '\"'){
-						first_occurence = true;
-					}
-					counter ++;
-				}
-
-				strcat(newLine, textToAdd);
-				fputs(newLine, grub_temp);
-			} else {
-				fputs(singleLine, grub_temp);
-			}
-		}
-		else
-			{
-				fputs(singleLine, grub_temp);
-		}
-	}
-	fclose(grub_config);
-	fclose(grub_temp);
-	system("sudo mv grub-temp /etc/default/grub");
-	printf("GRUB config file successfully generated. \n");
+    char singleLine [5000];
+    while(fgets(singleLine, 5000, grub_config)){
+        if (strstr(singleLine, "GRUB_CMDLINE_LINUX_DEFAULT=") != NULL){
+            if (!strstr(singleLine, param)){
+                // I can use a boolean that gets trigerred in the first occurance of "
+                // In the second appearance of " , we can replace it with the text
+                char newLine[6000];
+                
+                char textToAdd[150];
+                strcpy(textToAdd, " ");
+                strcat(textToAdd, param);
+                printf(textToAdd);
+                int i;
+                bool first_occurence = false;
+                for (i=0; i<strlen(singleLine);++i){
+                    if (singleLine[i] == '\"'){
+                        if (!first_occurence){
+                            first_occurence = true;
+                        } else{
+                            strcat(newLine, textToAdd);
+                        }
+                    }
+                    char tmp[2];
+                    tmp[0] = singleLine[i];
+                    tmp[1] = '\0';
+                    if (newLine[0] == '\0'){
+                        strcpy(newLine, tmp);
+                    } else{
+                        strcat(newLine, tmp);
+                    }
+                }
+                fputs(newLine, grub_temp);
+            } else{
+                fputs(singleLine, grub_temp);
+            }
+        }
+        else
+            {
+                fputs(singleLine, grub_temp);
+        }
+    }
+    fclose(grub_config);
+    fclose(grub_temp);
+    system("sudo mv grub-temp /etc/default/grub");
+    printf("GRUB config file successfully generated. \n");
 }
+
 
 void add_systemdboot_param(char param[]){
 	char command[100];
