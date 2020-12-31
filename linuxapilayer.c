@@ -44,18 +44,16 @@ void add_grub_param(char param[100]){
     FILE * grub_config = fopen("/etc/default/grub","r");
     FILE * grub_temp = fopen("grub-temp","w");
 
-    char singleLine [5000];
-    while(fgets(singleLine, 5000, grub_config)){
+    char singleLine [6000];
+    while(fgets(singleLine, 6000, grub_config)){
         if (strstr(singleLine, "GRUB_CMDLINE_LINUX_DEFAULT=") != NULL){
             if (!strstr(singleLine, param)){
                 // I can use a boolean that gets trigerred in the first occurance of "
                 // In the second appearance of " , we can replace it with the text
-                char newLine[6000];
-                
+                char newLine[6150];
                 char textToAdd[150];
                 strcpy(textToAdd, " ");
                 strcat(textToAdd, param);
-                printf(textToAdd);
                 int i;
                 bool first_occurence = false;
                 for (i=0; i<strlen(singleLine);++i){
@@ -68,7 +66,6 @@ void add_grub_param(char param[100]){
                     }
                     char tmp[2];
                     tmp[0] = singleLine[i];
-                    tmp[1] = '\0';
                     if (newLine[0] == '\0'){
                         strcpy(newLine, tmp);
                     } else{
@@ -87,14 +84,13 @@ void add_grub_param(char param[100]){
     }
     fclose(grub_config);
     fclose(grub_temp);
-    system("sudo mv grub-temp /etc/default/grub");
-    printf("GRUB config file successfully generated. \n");
+    system("mv grub-temp /etc/default/grub");
 }
 
 
 void add_systemdboot_param(char param[]){
 	char command[100];
-	strcat(command, "sudo kernelstub --add-options \"");
+	strcat(command, "kernelstub --add-options \"");
 	strcat(command, param);
 	strcat(command,"\"");
 	system(command);
@@ -151,18 +147,18 @@ bool command_exists(char command[]){
 
 void update_bootloaders(){
 	if (command_exists("bootclt")){
-		system("sudo bootctl update");
+		system("bootctl update");
 	}
 	if (command_exists("update-grub")){
-		system("sudo update-grub");
+		system("update-grub");
 	}
 	if (command_exists("grub-update")){
-		system("sudo grub-update");
+		system("grub-update");
 	}
 	if (command_exists("grub-mkconfig")){
-		system("sudo grub-mkconfig -o /boot/grub/grub.cfg");
+		system("grub-mkconfig -o /boot/grub/grub.cfg");
 	}
 	if (command_exists("grub2-mkconfig")){
-		system("sudo grub2-mkconfig -o \"$(readlink -e /etc/grub2.conf)\"");
+		system("grub2-mkconfig -o \"$(readlink -e /etc/grub2.conf)\"");
 	}
 }
