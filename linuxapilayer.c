@@ -46,11 +46,12 @@ void add_grub_param(char param[100]){
 
     char singleLine [6000];
     while(fgets(singleLine, 6000, grub_config)){
-        if (strstr(singleLine, "GRUB_CMDLINE_LINUX_DEFAULT=") != NULL){
+        if (strstr(singleLine, "GRUB_CMDLINE_LINUX_DEFAULT") != NULL){
             if (!strstr(singleLine, param)){
                 // I can use a boolean that gets trigerred in the first occurance of "
                 // In the second appearance of " , we can replace it with the text
                 char newLine[6150];
+                newLine[0]= '\0';
                 char textToAdd[150];
                 strcpy(textToAdd, " ");
                 strcat(textToAdd, param);
@@ -64,14 +65,16 @@ void add_grub_param(char param[100]){
                             strcat(newLine, textToAdd);
                         }
                     }
-                    char tmp[2];
-                    tmp[0] = singleLine[i];
+                    char tmp[2] = {singleLine[i], '\0'};
+                    char tmp2[5];
+                    strcpy(tmp2, tmp);
                     if (newLine[0] == '\0'){
-                        strcpy(newLine, tmp);
+                        strcpy(newLine, tmp2);
                     } else{
-                        strcat(newLine, tmp);
+                        strcat(newLine, tmp2);
                     }
                 }
+                strcat(newLine, "\0");
                 fputs(newLine, grub_temp);
             } else{
                 fputs(singleLine, grub_temp);
