@@ -1,10 +1,1 @@
-WARNING: THIS IS EXPERIMENTAL AND INCOMPLETE. RUNNING IT MAY RUIN YOUR SYSTEM.
-
-To compile run the `make` command. This shall create 3 executables - 
-1. single-gpu-setup
-2. vfio-startup
-3. vfio-teardown
-
-To remove the 3 compiled executables, simply run `make clean`.
-
-NOTE: This branch is in active development and is not even close to being ready yet.
+Development has moved to https://gitlab.com/decisivedove/single-gpu-passthrough-automation/ for now. I will update this branch after I make some progress and come up with some stable executables that are well tested. Currently this branch is experimental and should not be used by anyone except testers.
