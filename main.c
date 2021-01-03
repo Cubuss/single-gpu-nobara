@@ -66,15 +66,14 @@ int main(){
 	}	
 	update_bootloaders();
 
+
 	if (command_exists("pacman")){
 			system("pacman -S libvirt virt-manager edk2-ovmf qemu");
 			system("pacman -S dmidecode dnsmasq ebtables gettext libvirt-storage-gluster libvirt-storage-iscsi-direct libvirt-storage-rbd lvm2 open-iscsi openbsd-netcat qemu radvd");
-		}
-	if (command_exists("apt")){
-			system("apt install qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients bridge-utils virt-manager ovmf");
-		}
-	if (command_exists("dnf")){
+		}else if (command_exists("dnf")){
 			system("dnf install @virtualization");	
+		}else if (command_exists("apt")){
+			system("apt install qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients bridge-utils virt-manager ovmf");
 		}
 	return 0;
 }
