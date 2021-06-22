@@ -1,4 +1,9 @@
 #!/bin/bash
+
+if test -e /etc/libvirt/ && ! test -e /etc/libvirt/hooks;
+then
+   mkdir -p /etc/libvirt/hooks;
+fi
 if test -e /etc/libvirt/hooks/qemu;
 then
     mv /etc/libvirt/hooks/qemu /etc/libvirt/hooks/qemu_last_backup
