@@ -125,7 +125,7 @@ add or edit the following lines:
 
 for AMD CPU:
 
- </features>
+# </features>
   <cpu mode='host-passthrough' check='none'>
     <topology sockets='1' cores='6' threads='2'/>
     <feature policy='require' name='topoext'/>
@@ -137,3 +137,4 @@ for intel :
     <topology sockets='1' cores='6' threads='2'/>
     <feature policy='disable' name='smep'/>
   </cpu>
+#
