@@ -141,10 +141,7 @@ for AMD CPU:
     <feature policy='require' name='topoext'/>
   </cpu>
 
-
-
 for intel :
-
 </features>
   <cpu mode='host-passthrough' check='none'>
     <topology sockets='1' cores='6' threads='2'/>
