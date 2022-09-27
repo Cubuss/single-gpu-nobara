@@ -11,3 +11,4 @@ done;
 
 
 
+then install running install_hooks.sh as sudo
