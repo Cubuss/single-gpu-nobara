@@ -124,7 +124,11 @@ add or edit the following lines:
 
 
 for AMD CPU:
-
+  u</features>
+  <cpu mode='host-passthrough' check='none'>
+    <topology sockets='1' cores='6' threads='2'/>
+    <feature policy='require' name='topoext'/>
+  </cpu>
 ! </features>
   <cpu mode='host-passthrough' check='none'>
     <topology sockets='1' cores='6' threads='2'/>
