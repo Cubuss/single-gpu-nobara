@@ -12,3 +12,8 @@ done;
 
 
 then install running install_hooks.sh as sudo
+
+when running VM logs will be placed at : 
+win10.log You can find them in /var/log/libvirt/qemu
+custom_hooks.log. You can find them in /var/log/libvirt
+libvirtd.log You can find them in /var/log/libvirt/
