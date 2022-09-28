@@ -66,8 +66,14 @@ save then :`` sudo systemctl restart libvirtd``
 13) Download latest stable https://github.com/virtio-win/virtio-win-pkg-scripts/blob/master/README.md (Stable virtio-win ISO)
 and windows 11 iso 
 
-14) Run virtual machine manager 
-click plus for new virtual machine (Make sure its named win10)
+14)
+<details><summary>Click for VM SETUP</summary>
+<p>
+
+#### Virtual machine setup
+
+```Run virtual machine manager
+click plus for new virtual machine (Make sure its named win10) 
 local install media iso 
 select win11 iso 
 select desired storage:
@@ -82,6 +88,12 @@ VirtIO disk set to Virtio
 Option cache mode as writeback
 click add hardware select storage select CD
 make sure both WIN11 and virtio ISO are added 
+```
+
+</p>
+</details>
+
+
 
 Boot vm and install windows 11 if it asks for drivers you can select browse and choose virtio drivers to install 
 go to amd64 folder > w11 
@@ -106,6 +118,16 @@ Remove spice / qxl stuff in VM
 
 
 ![image](https://user-images.githubusercontent.com/9220880/192649528-7003ab27-0921-4d02-afc2-991141246241.png)
+
+
+
+ add this line to the XML in your virutal manager PCI GPU tab 
+ 
+``<rom file='/var/lib/libvirt/vbios/<romfile>.rom'/> ``
+
+![image](https://user-images.githubusercontent.com/9220880/192890977-68336167-9c31-4e7d-b66a-e119dac61cf5.png)
+
+(Change GP102.ROM To your rom file name)
 
 
 
