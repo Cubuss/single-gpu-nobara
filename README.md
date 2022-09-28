@@ -66,11 +66,10 @@ save then :`` sudo systemctl restart libvirtd``
 13) Download latest stable https://github.com/virtio-win/virtio-win-pkg-scripts/blob/master/README.md (Stable virtio-win ISO)
 and windows 11 iso 
 
-14)
-<details><summary>Click for VM SETUP</summary>
+14)<details><summary>Click for VM SETUP</summary>
 <p>
 
-#### Virtual machine setup
+#### Run virtual machine manager and do the following:
 
 ```Run virtual machine manager
 click plus for new virtual machine (Make sure its named win10) 
