@@ -1,20 +1,3 @@
-
-
-   Download this repo : edit both vfio-startup.sh and vfio-teardown.sh scripts in hooks folder to your PCI gpu and audio ids you can get from the iommu 
-
-
-
-![image](https://user-images.githubusercontent.com/9220880/192649503-a3fe2084-932a-4787-8a1a-15f1b6a8f8a9.png)
-
-
-![image](https://user-images.githubusercontent.com/9220880/192649528-7003ab27-0921-4d02-afc2-991141246241.png)
-
-
-
-
-
-
-
 1) Make sure virtualisation is enabled etc in bios 
 
 AMD:
@@ -107,14 +90,23 @@ go to amd64 folder > w11
 15) Dump vbios and edit full guide :
 https://gitlab.com/risingprismtv/single-gpu-passthrough/-/wikis/6)-Preparation-and-placing-of-ROM-file
 
-16) https://github.com/Cubuss/scripts  git clone and read to edit scripts to make it work with nobara
 
-17)Open vm add hardware > PCI host device and choose both your GPU and AUDIO (ones you added to the script )
+16)Open vm add hardware > PCI host device and choose both your GPU and AUDIO (ones you added to the script )
  for your GPU add <rom file="/var/lib/libvirt/vbios/yourromfilename.rom"/> to the xml tab in virtual manager
 https://imgur.com/a/XT6VDeG
 
 add keyboard and mouse via > add hardware > usb device. 
 Remove spice / qxl stuff in VM
+
+17)  Download this repo : edit both vfio-startup.sh and vfio-teardown.sh scripts in hooks folder to your PCI gpu and audio ids you can get from the iommu 
+
+
+
+![image](https://user-images.githubusercontent.com/9220880/192649503-a3fe2084-932a-4787-8a1a-15f1b6a8f8a9.png)
+
+
+![image](https://user-images.githubusercontent.com/9220880/192649528-7003ab27-0921-4d02-afc2-991141246241.png)
+
 
 
 18) if you have nvidia GPU :
