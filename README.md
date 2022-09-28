@@ -1,15 +1,15 @@
 1) Make sure virtualisation is enabled etc in bios 
 
 AMD:
-``
+```
 IOMMU = enabled
 NX mode = enabled
 SVM mode = enabled
-``
+```
 INTEL:
-``
+```
 VT-D = Enabled VT-X = Enabled
-``
+```
 2) ``sudo nano /etc/default/grub ``
 
 If you have AMD:  amd_iommu=on iommu=pt 
