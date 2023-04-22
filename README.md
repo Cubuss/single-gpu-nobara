@@ -85,6 +85,12 @@ save then :`` sudo systemctl restart libvirtd``
 13) Download latest stable https://github.com/virtio-win/virtio-win-pkg-scripts/blob/master/README.md (Stable virtio-win ISO)
 and windows 11 iso 
 
+
+----EDIT----------
+DOWNGRADE ovmf:
+
+```sudo dnf downgrade edk2-ovmf```
+
 <details><summary>14) Click for VM SETUP</summary>
 <p>
 
