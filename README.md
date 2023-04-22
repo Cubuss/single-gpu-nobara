@@ -90,7 +90,7 @@ DOWNGRADE ovmf:
 
 ```sudo dnf downgrade edk2-ovmf```
 
-<details><summary>14) Click for VM SETUP</summary>
+<details><summary>14) Click Here for VM SETUP</summary>
 <p>
 
 #### Run virtual machine manager and do the following:
