@@ -37,7 +37,6 @@ GRUB_CMDLINE_LINUX="rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidi
 4) reboot 
 
 6) run this script to see if IOMMU groups are valid:
-7) 
 ```
 #!/bin/bash
 shopt -s nullglob
