@@ -86,7 +86,7 @@ save then :`` sudo systemctl restart libvirtd``
 and windows 11 iso 
 
 
-----EDIT----------
+MAKE SURE TO DOWNGRADE OVMF ELSE WINDOWS INSTALLER WONT BOOT ON LATEST NOBARA 37
 DOWNGRADE ovmf:
 
 ```sudo dnf downgrade edk2-ovmf```
