@@ -33,8 +33,11 @@ GRUB_CMDLINE_LINUX="rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidi
 
 
 3)`` sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg   ``
+
 4) reboot 
-5) run this script to see if IOMMU groups are valid:
+
+6) run this script to see if IOMMU groups are valid:
+7) 
 ```
 #!/bin/bash
 shopt -s nullglob
