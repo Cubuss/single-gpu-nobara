@@ -12,9 +12,25 @@ VT-D = Enabled VT-X = Enabled
 ```
 2) ``sudo nano /etc/default/grub ``
 
-If you have AMD:  amd_iommu=on iommu=pt 
-If you have Intel: intel_iommu=on iommu=pt 
-add to GRUB_CMDLINE_LINUX="xxxx" line
+If you have AMD:  ``amd_iommu=on iommu=pt`` 
+If you have Intel: ``intel_iommu=on iommu=pt ``
+add to GRUB_CMDLINE_LINUX="xxxx" line 
+
+example:
+
+```GRUB_DEFAULT='saved'
+GRUB_DISABLE_RECOVERY='true'
+GRUB_DISABLE_SUBMENU='true'
+GRUB_ENABLE_BLSCFG='true'
+GRUB_TERMINAL_OUTPUT='console'
+GRUB_TIMEOUT='5'
+GRUB_CMDLINE_LINUX_DEFAULT='amd_iommu=on iommu=pt quiet video=efifb:off splash resume=UUID=988abac8-e687-4b47-9056-9d9d073503e9'
+GRUB_DISTRIBUTOR='Nobara Linux'
+GRUB_CMDLINE_LINUX="rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1"
+
+```
+
+
 
 3)`` sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg   ``
 4) reboot 
