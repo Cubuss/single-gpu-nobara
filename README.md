@@ -123,11 +123,11 @@ go to amd64 folder > w11
 
 
 15) Dump vbios and edit full guide :
-https://gitlab.com/risingprismtv/single-gpu-passthrough/-/wikis/6)-Preparation-and-placing-of-ROM-file
+[https://gitlab.com/risingprismtv/single-gpu-passthrough/-/wikis/6)-Preparation-and-placing-of-ROM-file](https://gitlab.com/risingprismtv/single-gpu-passthrough/-/wikis/6)-Preparation-and-placing-of-the-ROM-file)
 
 
 16)Open vm add hardware > PCI host device and choose both your GPU and AUDIO (ones you added to the script )
- for your GPU add <rom file="/var/lib/libvirt/vbios/yourromfilename.rom"/> to the xml tab in virtual manager
+ for your GPU add <rom file="/var/lib/libvirt/vgabios/yourromfilename.rom"/> to the xml tab in virtual manager
 https://imgur.com/a/XT6VDeG
 
 add keyboard and mouse via > add hardware > usb device. 
@@ -146,7 +146,7 @@ Remove spice / qxl stuff in VM
 
  add this line to the XML in your virutal manager PCI GPU tab 
  
-``<rom file='/var/lib/libvirt/vbios/<romfile>.rom'/> ``
+``  <rom file="/var/lib/libvirt/vgabios/patched.rom"/> ``
 
 ![image](https://user-images.githubusercontent.com/9220880/192890977-68336167-9c31-4e7d-b66a-e119dac61cf5.png)
 
