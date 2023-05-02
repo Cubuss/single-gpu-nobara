@@ -123,7 +123,7 @@ go to amd64 folder > w11
 
 
 15) Dump vbios and edit full guide :
-[https://gitlab.com/risingprismtv/single-gpu-passthrough/-/wikis/6)-Preparation-and-placing-of-ROM-file](https://gitlab.com/risingprismtv/single-gpu-passthrough/-/wikis/6)-Preparation-and-placing-of-the-ROM-file)
+https://gitlab.com/risingprismtv/single-gpu-passthrough/-/wikis/6)-Preparation-and-placing-of-the-ROM-file
 
 
 16)Open vm add hardware > PCI host device and choose both your GPU and AUDIO (ones you added to the script )
