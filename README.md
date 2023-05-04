@@ -60,15 +60,12 @@ uncomment following lines:
 log_outputs="1:file:/var/log/libvirt/libvirtd.log"
 ```
 9) run following commands:
-``sudo usermod -a -G libvirt $(whoami)``
+
 ``sudo systemctl start libvirtd``
+
+
+10)
 ``sudo systemctl enable libvirtd``
-
-10) verify:
-``sudo groups $(whoami) `` 
-
-output will be :`` username libvirt etc``
-
 
 11) ``sudo nano /etc/libvirt/qemu.conf``
 change following:
