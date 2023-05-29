@@ -70,8 +70,14 @@ log_outputs="1:file:/var/log/libvirt/libvirtd.log"
 11) ``sudo nano /etc/libvirt/qemu.conf``
 change following:
 ```
-#user = "root" to user = "your username"
-#group = "root" to group = "your username"
+#user = "root" 
+#group = "root"
+
+to 
+
+user = "yourusernamehere"
+group = "yourusernamehere"
+
 ```
 save then :`` sudo systemctl restart libvirtd``
 
