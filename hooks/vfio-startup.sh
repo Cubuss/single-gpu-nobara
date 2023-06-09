@@ -1,4 +1,3 @@
-  GNU nano 6.0                                                                    vfio-startup.sh                                                                               
 # Helpful to read output when debugging
 set -x
  
