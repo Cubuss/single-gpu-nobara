@@ -1,5 +1,3 @@
-  GNU nano 6.0                                                                    vfio-teardown.sh                                                                              
-!/bin/bash
 set -x
 
 modprobe -r vfio-pci
