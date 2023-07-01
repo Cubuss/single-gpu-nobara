@@ -24,9 +24,9 @@ GRUB_DISABLE_SUBMENU='true'
 GRUB_ENABLE_BLSCFG='true'
 GRUB_TERMINAL_OUTPUT='console'
 GRUB_TIMEOUT='5'
-GRUB_CMDLINE_LINUX_DEFAULT='amd_iommu=on iommu=pt quiet video=efifb:off splash resume=UUID=988abac8-e687-4b47-9056-9d9d073503e9'
+GRUB_CMDLINE_LINUX_DEFAULT='quiet splash resume=UUID=c81d7964-1d04-4441-a574-ad1c953efd54'
 GRUB_DISTRIBUTOR='Nobara Linux'
-GRUB_CMDLINE_LINUX="rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1"
+GRUB_CMDLINE_LINUX="rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1 amd_iommu=on iommu=pt quiet video=efifb:off"
 
 ```
 
